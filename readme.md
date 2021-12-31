@@ -5,7 +5,9 @@ Interface/Cameras/GetJPEGStream?AuthUser=admin&AuthPass=1582&ResponseFormat=JSON
 mjpeg > dash
   sem suporte para ios
   apenas hls tem e webrtc
-  
+  https://cdn.dashjs.org/latest/jsdoc/index.html
+  https://flowplayer.com/developers/tools/stream-tester?custom=http%3A%2F%2F127.0.0.1%3A8080%2Flive.m3u8
+
 mjpeg > hls
   npm install http-server -g
   http-server -c-1 data
