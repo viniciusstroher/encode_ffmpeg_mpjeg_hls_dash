@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  ffmpeg:
+    image: linuxserver/ffmpeg:latest
+    container_name: ffmpeg
+    restart: always
+    volumes:
+     - ./data:/data
+    command: -i https://stream.hullerseguranca.com.br/Interface/Cameras/GetJPEGStream?AuthUser=admin&AuthPass=1582&ResponseFormat=JSON&Profile=Custom&CustomProfile=HighResolution&Width=720&Height=480&KeepAspectRatio=TRUE&FPS=6&Camera=0163%2005%20BASE%20PAPEIS -f hls -hls_list_size 4 -hls_time 2 -hls_flags delete_segments+append_list+omit_endlist ./data/live.m3u8

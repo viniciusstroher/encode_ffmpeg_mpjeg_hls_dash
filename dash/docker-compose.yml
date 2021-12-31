@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  ffmpeg:
+    image: linuxserver/ffmpeg:latest
+    container_name: ffmpeg
+    restart: always
+    volumes:
+     - ./data:/data
+    command: '-i https://stream.hullerseguranca.com.br/Interface/Cameras/GetJPEGStream?AuthUser=admin&AuthPass=1582&ResponseFormat=JSON&Profile=Custom&CustomProfile=HighResolution&Width=720&Height=480&KeepAspectRatio=TRUE&FPS=6&Camera=0163%2005%20BASE%20PAPEIS
+    -preset veryslow -keyint_min 100 -g 100 -sc_threshold 0 -r 25 -c:v libx264 -pix_fmt yuv420p 
+    -c:a aac -b:a 128k -an -init_seg_name init$$RepresentationID$$.$$ext$$ 
+    -media_seg_name chunk$$RepresentationID$$-$$Number%05d$$.$$ext$$ -use_template 1 -use_timeline 1 
+    -seg_duration 4 -adaptation_sets "id=0,streams=v id=1,streams=a" -f dash /data/Dash/dash.mpd'
